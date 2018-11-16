@@ -90,4 +90,81 @@ addmargins(m2, margin=2,sd)
 
 #dataframe ----
 
+  #combine different data strcutres 
+set.seed(1234)
+(gender = sample(c('M','F'), size = 30, replace = T))
+table (gender)
+prop.table(table(gender))
+
+(gender = sample(c('M','F'), size = 30, replace = T, prob = c(0.6,0.4)))
+table (gender)
+prop.table(table(gender))
+
+x = c(1.8,2.2)
+floor(x)
+ceiling(x)
+trunc(x)
+
+  #dataframe
+(rollno = 1:30)
+(sname = paste('student',1:30, sep=''))
+(gender = sample(c('M','F'), size =30, replace = T, prob = c(0.7,0.3)))
+
+(marks1 = floor(rnorm(30, mean = 50, sd =10)))
+(marks2 = ceiling(rnorm(30,40,5)))
+(course = sample(c('BBA','MBA'), size = 30, replace = T, prob = c(0.5,0.5)))
+rollno; sname; gender; marks1; marks2; course
+#Create DF
+df1 = data.frame(rollno, sname, gender, marks1, marks2, course, stringsAsFactors = F)
+str(df1) #structure of DF
+head(df1) #top 6 rows
+tail(df1)
+class(df1)
+summary(df1)
+df1
+
+df1$course
+df1$gender = factor(df1$gender)
+df1$course = factor(df1$course)
+
+head(df1[ ,c(2,4)])
+df1[1:10,]
+df1[1:5, 1:4]
+#using conditions
+df1[marks1 > 50 & gender =='F', c('rollno', 'sname', 'gender', 'marks1')]
+df1[marks1 > 50 & gender =='F', c(1,2)]
+df1[marks1 > 50 & gender =='F', ]
+
+dim(df1)
+
+aggregate(df1$marks1, by=list(df1$gender, df1$course), FUN = sum)
+aggregate(marks1 ~ gender, data = df1, FUN = max)
+aggregate(cbind(marks1,marks2) ~ gender, data = df1, FUN = max)
+
+
 #factors ----
+
+(grades= sample(c('a','b','c','d'), size = 30, replace =T, prob=c(.3,.2,.4,.1)))
+summary(grades)
+table(grades)
+(gradesFactor = factor(grades))
+summary(gradesFactor)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
