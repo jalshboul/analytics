@@ -93,4 +93,3 @@ head(omni)
 cbind(omni, predict(fit2, newdata = data.frame(omni$price, omni$promotion)))
 cbind(omni, fitted(fit2))
 cbind(omni, fitted(fit2), omni$sales - fitted(fit2), residuals(fit2))
-

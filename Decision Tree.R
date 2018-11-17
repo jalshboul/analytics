@@ -36,7 +36,7 @@ rpart.plot(prunetree, nn=T, cex=.8, type=4)
 (predictedSales=predict(prunetree, newdata=testdata, type='vector'))
 cbind(testdata, predictedSales)
 #next line will show error because we have to predict numerical value instead of class/ category, so type of response reqd is vector not class
-(predict(prunetree, newdata=testdata, type='class'))
+(predict(prunetree, newdata=testdata, type='vector'))
 
 
 #see online help here
