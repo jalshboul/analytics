@@ -10,25 +10,27 @@ data = titanic[,c(2,3,5,6,7)]  #select few columns only
 head(data)
 
 #load libraries
+install.packages("rpart.plot")
 library(rpart)
 library(rpart.plot)
 
 #Decision Tree
-fit <- rpart(survived~., data = data, method = 'class')
+fit <- rpart(survived~., data = data, method = 'class') #. means select all apart from survived
 fit
 rpart.plot(fit, extra = 106, cex=.8,nn=T)  #plot
 
 printcp(fit) #select complexity parameter
+?prune
 prunetree2 = prune(fit, cp=.014)
 rpart.plot(prunetree2, cex=.8,nn=T)
 prunetree2
 nrow(data)
 
 #Predict class category or probabilities
-(testdata = sample_n(data,2))
+(testdata = sample_n(data,1))
 predict(prunetree2, newdata=testdata, type='class')
 predict(prunetree2, newdata=testdata, type='prob')
-
+plot(predict(prunetree2, newdata = testdata, type = 'prob'))
 #Use decision trees for predicting
 #customer is likely to buy a product or not with probabilities
 #customer is likely to default on payment or not with probabilities
