@@ -27,6 +27,7 @@ km5$tot.withinss
 km1$tot.withinss; km2$tot.withinss ; km3$tot.withinss ; km4$tot.withinss ; km5$tot.withinss
 
 #Selecting the number of clusters
+install.packages("NbClust")
 library(NbClust)
 nc = NbClust(data, distance="euclidean",min.nc=2, max.nc=15, method="average")
 ?NbClust
@@ -49,3 +50,4 @@ cbind(km1$tot.withinss, km2$tot.withinss, km3$tot.withinss, km4$tot.withinss,km5
 
 #we select no clusters at elbow point
 #adding more clusters does not significantly reduce total withinss
+
